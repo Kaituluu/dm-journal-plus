@@ -19,6 +19,5 @@
       }
     ]
   },
-  "esmodules": ["scripts/main.js", "scripts/enricher-dialog.js"],
-"styles": ["styles/journal-plus.css"]
+  "esmodules": ["scripts/main.js"]
 }

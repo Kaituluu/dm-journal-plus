@@ -1,0 +1,24 @@
+{
+  "id": "dm-journal-plus",
+  "title": "DM Journal Plus (v13)",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13"
+  },
+  "description": "<p>Dynamic Enricher Builder for dnd5e Journals</p>",
+  "flags": {
+    "canUpload": true
+  },
+  "relationships": {
+    "systems": [
+      {
+        "id": "dnd5e",
+        "type": "system",
+        "compatibility": {}
+      }
+    ]
+  },
+  "esmodules": ["scripts/main.js", "scripts/enricher-dialog.js"],
+"styles": ["styles/journal-plus.css"]
+}

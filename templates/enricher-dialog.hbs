@@ -1,0 +1,74 @@
+<form class="dmjp-enricher">
+  <div class="form-group">
+    <label>Type</label>
+    <select id="dmjp-type" name="type">
+      <option value="skill">Skill Check (@Check)</option>
+      <option value="ability">Ability Check (@Check)</option>
+      <option value="save">Saving Throw (@Save)</option>
+      <option value="damage">Damage (@Damage)</option>
+      <option value="condition">Condition (@Condition)</option>
+      <option value="dice">Dice ([[/br]])</option>
+    </select>
+  </div>
+
+  <hr/>
+
+  <div class="form-grid">
+    <div class="form-group">
+      <label>Skill</label>
+      <select id="dmjp-skill">
+        {{#each skills}}
+          <option value="{{key}}">{{label}}</option>
+        {{/each}}
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Ability</label>
+      <select id="dmjp-ability">
+        {{#each abilities}}
+          <option value="{{key}}">{{label}}</option>
+        {{/each}}
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>DC</label>
+      <input id="dmjp-dc" type="number" placeholder="15"/>
+    </div>
+
+    <div class="form-group">
+      <label>Dice</label>
+      <input id="dmjp-dice" type="text" placeholder="1d6, 2d8+3"/>
+    </div>
+
+    <div class="form-group">
+      <label>Damage Type</label>
+      <select id="dmjp-dmgtype">
+        {{#each damageTypes}}
+          <option value="{{key}}">{{label}}</option>
+        {{/each}}
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Condition</label>
+      <select id="dmjp-condition">
+        {{#each conditions}}
+          <option value="{{key}}">{{label}}</option>
+        {{/each}}
+      </select>
+    </div>
+
+    <div class="form-group" style="grid-column: 1 / -1;">
+      <label>Flavor (for Dice)</label>
+      <input id="dmjp-flavor" type="text" placeholder="e.g. Scavenger’s Luck"/>
+    </div>
+  </div>
+
+  <footer class="sheet-footer">
+    <button type="button" data-action="insert">
+      Insert
+    </button>
+  </footer>
+</form>

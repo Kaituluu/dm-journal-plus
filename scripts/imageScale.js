@@ -1,7 +1,7 @@
 // imageScale.js
 // Foundry VTT v13+ — Journal editor image scaler (persists by updating editor HTML via Foundry APIs)
 
-console.log("DM Journal Plus | Image Scale Tool Loaded");
+//console.log("DM Journal Plus | Image Scale Tool Loaded");
 
 const ImageScaleTool = (() => {
   const PANEL_ID = "fvtt-image-scale-panel";

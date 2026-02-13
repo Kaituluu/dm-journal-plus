@@ -5,7 +5,7 @@ export function initializeChecklist() {
   // Store current page when ProseMirror sheet renders
   Hooks.on("renderJournalEntryPageProseMirrorSheet", (app) => {
     activePage = app.document;
-    console.log("Checklist: Active page set:", activePage?.id);
+    //console.log("Checklist: Active page set:", activePage?.id);
   });
 
   // Handle checklist click
@@ -15,18 +15,18 @@ export function initializeChecklist() {
     if (!item) return;
 
     if (!activePage) {
-      console.warn("Checklist: No active page.");
+      //console.warn("Checklist: No active page.");
       return;
     }
 
-    console.log("Clicked checklist item");
+    //console.log("Clicked checklist item");
 
     // Toggle state
     const isChecked = item.dataset.checked === "true";
     const newState = (!isChecked).toString();
     item.dataset.checked = newState;
 
-    console.log("New state:", newState);
+    //console.log("New state:", newState);
 
     // Get ONLY the journal content section
     const contentSection = document.querySelector(
@@ -34,7 +34,7 @@ export function initializeChecklist() {
     );
 
     if (!contentSection) {
-      console.warn("Checklist: No content section found.");
+      //console.warn("Checklist: No content section found.");
       return;
     }
 
@@ -45,6 +45,6 @@ export function initializeChecklist() {
       "text.content": newHTML
     });
 
-    console.log("Checklist: Page updated.");
+    //console.log("Checklist: Page updated.");
   });
 }

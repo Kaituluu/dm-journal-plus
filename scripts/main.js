@@ -12,7 +12,7 @@ Hooks.on("renderJournalEntryPageProseMirrorSheet", (app, html) => {
 
   // Store active page correctly
   activePage = app.document;
-  console.log("Checklist: Active page set:", activePage?.id);
+  //console.log("Checklist: Active page set:", activePage?.id);
 
   // Detect editor + toolbar
   detectEditor(root, app.editor, injectChecklistButton);

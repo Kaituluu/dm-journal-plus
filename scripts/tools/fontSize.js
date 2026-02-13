@@ -15,6 +15,11 @@ export function injectFontSize(toolbar, editor) {
     <option value="18">18px</option>
     <option value="22">22px</option>
     <option value="28">28px</option>
+    <option value="30">30px</option>
+    <option value="32">32px</option>
+    <option value="36">36px</option>
+    <option value="40">40px</option>
+    <option value="48">48px</option>
   `;
 
   select.addEventListener("change", e => {

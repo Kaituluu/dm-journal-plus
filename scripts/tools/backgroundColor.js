@@ -23,91 +23,116 @@ function openBGWindow(editor) {
 
   const container = document.createElement("div");
   container.className = "dm-bg-window";
+  container.style.position = "fixed";
+  container.style.top = "50%";
+  container.style.left = "50%";
+  container.style.transform = "translate(-50%, -50%)";
+  container.style.background = "#1e1e1e";
+  container.style.border = "1px solid #444";
+  container.style.borderRadius = "8px";
+  container.style.boxShadow = "0 8px 25px rgba(0,0,0,0.7)";
+  container.style.zIndex = "10000";
+  container.style.minWidth = "320px";
+  container.style.color = "#e6e6e6";
 
-  container.innerHTML = `
-    <div class="dm-window-header">
-      <span>Highlight</span>
-      <button class="dm-close-btn">✕</button>
-    </div>
-    <div class="dm-window-body">
-      <input type="color" class="dm-color-input" value="#ffff00"/>
-      <button class="dm-apply-btn">Apply Highlight</button>
-    </div>
-  `;
+  const header = document.createElement("div");
+  header.style.display = "flex";
+  header.style.justifyContent = "space-between";
+  header.style.alignItems = "center";
+  header.style.padding = "10px 14px";
+  header.style.background = "#2a2a2a";
+  header.style.borderBottom = "1px solid #444";
+  header.style.cursor = "move";
+  header.style.fontWeight = "600";
+  header.textContent = "Highlight";
 
-  document.body.appendChild(container);
+  const closeBtn = document.createElement("button");
+  closeBtn.textContent = "✕";
+  closeBtn.style.background = "transparent";
+  closeBtn.style.border = "none";
+  closeBtn.style.color = "#aaa";
+  closeBtn.style.cursor = "pointer";
+  closeBtn.onclick = () => container.remove();
 
-  const closeBtn = container.querySelector(".dm-close-btn");
-  closeBtn.addEventListener("click", () => container.remove());
+  header.appendChild(closeBtn);
 
-  const applyBtn = container.querySelector(".dm-apply-btn");
-  const colorInput = container.querySelector(".dm-color-input");
+  const body = document.createElement("div");
+  body.style.padding = "14px";
+  body.style.display = "flex";
+  body.style.flexDirection = "column";
+  body.style.gap = "12px";
 
-  applyBtn.addEventListener("click", () => {
-    editor.focus();
+  const presets = ["#ff00ee", "#ffcc00", "#ff6666", "#66ff66", "#66ccff", "#ffffff", "#ff0000"];
+  const presetWrap = document.createElement("div");
+  presetWrap.style.display = "flex";
+  presetWrap.style.gap = "6px";
 
-    const selection = window.getSelection();
-    if (!selection.rangeCount) return;
+  const colorInput = document.createElement("input");
+  colorInput.type = "color";
+  colorInput.value = "#ffff00";
+  colorInput.style.height = "42px";
+  colorInput.style.width = "100%";
+  colorInput.style.border = "none";
+  colorInput.style.cursor = "pointer";
 
-    const range = selection.getRangeAt(0);
-    if (range.collapsed) return;
-
-    let node = selection.anchorNode;
-
-    while (node && node.nodeType === 1) {
-      if (node.style && node.style.backgroundColor) {
-        node.style.backgroundColor = colorInput.value;
-        container.remove();
-        return;
-      }
-      node = node.parentElement;
-    }
-
-    document.execCommand("styleWithCSS", false, true);
-    document.execCommand("backColor", false, colorInput.value);
-
-    container.remove();
+  presets.forEach(hex => {
+    const swatch = document.createElement("div");
+    swatch.style.width = "22px";
+    swatch.style.height = "22px";
+    swatch.style.background = hex;
+    swatch.style.borderRadius = "4px";
+    swatch.style.cursor = "pointer";
+    swatch.style.border = "1px solid #555";
+    swatch.onclick = () => {
+      colorInput.value = hex;
+    };
+    presetWrap.appendChild(swatch);
   });
 
-  makeDraggable(container, container.querySelector(".dm-window-header"));
-}
+  const applyBtn = document.createElement("button");
+  applyBtn.textContent = "Apply Highlight";
+  applyBtn.style.padding = "6px";
+  applyBtn.style.background = "#444";
+  applyBtn.style.border = "1px solid #666";
+  applyBtn.style.color = "#fff";
+  applyBtn.style.cursor = "pointer";
+  applyBtn.style.borderRadius = "4px";
 
+  applyBtn.onclick = () => {
+    editor.focus();
+    document.execCommand("styleWithCSS", false, true);
+    document.execCommand("backColor", false, colorInput.value);
+    container.remove();
+  };
+
+  body.appendChild(presetWrap);
+  body.appendChild(colorInput);
+  body.appendChild(applyBtn);
+
+  container.appendChild(header);
+  container.appendChild(body);
+  document.body.appendChild(container);
+
+  makeDraggable(container, header);
+}
 
 function makeDraggable(element, handle) {
   let offsetX = 0;
   let offsetY = 0;
-  let isDragging = false;
+  let dragging = false;
 
-  handle.addEventListener("mousedown", (e) => {
-    isDragging = true;
+  handle.addEventListener("mousedown", e => {
+    dragging = true;
     offsetX = e.clientX - element.offsetLeft;
-    offsetY = e.clientX ? (e.clientY - element.offsetTop) : 0;
+    offsetY = e.clientY - element.offsetTop;
     element.style.transform = "none";
   });
 
-  document.addEventListener("mousemove", (e) => {
-    if (!isDragging) return;
+  document.addEventListener("mousemove", e => {
+    if (!dragging) return;
     element.style.left = `${e.clientX - offsetX}px`;
-    element.style.top = `${e.clientY - (e.clientY - element.offsetTop - (e.clientY - element.offsetTop))}px`;
-    // simpler: fix below (see note)
+    element.style.top = `${e.clientY - offsetY}px`;
   });
 
-  document.addEventListener("mouseup", () => {
-    isDragging = false;
-  });
-}
-function removeBackgroundStyles(fragment) {
-    console.log("Removing background  styles from selection");
-  const walker = document.createTreeWalker(
-    fragment,
-    NodeFilter.SHOW_ELEMENT,
-    null
-  );
-
-  let node;
-  while ((node = walker.nextNode())) {
-    if (node.style && node.style.backgroundColor) {
-      node.style.backgroundColor = "transparent";
-    }
-  }
+  document.addEventListener("mouseup", () => dragging = false);
 }

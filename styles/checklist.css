@@ -1,0 +1,39 @@
+/* EDITOR + VIEW MODE */
+.editor-content ul.dm-checklist,
+.journal-entry-page ul.dm-checklist {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin: 0;
+}
+
+.editor-content li.dm-check-item,
+.journal-entry-page li.dm-check-item {
+  cursor: pointer;
+  margin: 4px 0;
+  position: relative;
+  padding-left: 22px;
+  list-style: none !important;
+}
+
+.editor-content li.dm-check-item::before,
+.journal-entry-page li.dm-check-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 4px;
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--color-border-light-2);
+  background: var(--color-bg);
+}
+
+.editor-content li.dm-check-item[data-checked="true"]::before,
+.journal-entry-page li.dm-check-item[data-checked="true"]::before {
+  background: var(--color-text-dark-primary);
+}
+
+.editor-content li.dm-check-item[data-checked="true"],
+.journal-entry-page li.dm-check-item[data-checked="true"] {
+  text-decoration: line-through;
+  opacity: 0.7;
+}

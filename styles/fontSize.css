@@ -1,0 +1,70 @@
+.dm-fontsize-dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dm-dropdown-toggle {
+  height: 26px;
+  padding: 0 8px;
+  background: var(--color-bg-btn);
+  color: var(--color-text-light-0);
+  border: 1px solid var(--color-border-light-2);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.dm-dropdown-toggle:hover {
+  background: var(--color-bg-btn-hover);
+}
+
+.dm-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  display: none;
+  z-index: 1000;
+}
+
+.dm-fontsize-dropdown.open .dm-dropdown-menu {
+  display: block;
+}
+
+.dm-dropdown-menu li {
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.dm-dropdown-menu li:hover {
+  background: var(--color-bg-option-hover);
+}
+#prosemirror-dropdown {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border-light-2);
+}
+
+#prosemirror-dropdown ul {
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+}
+
+#prosemirror-dropdown li {
+  padding: 4px 10px;
+  cursor: pointer;
+  color: var(--color-text-dark-primary);
+}
+
+#prosemirror-dropdown li:hover {
+  background: var(--color-bg-option-hover);
+}
+.font-12 { font-size: 12px; }
+.font-14 { font-size: 14px; }
+.font-16 { font-size: 16px; }
+.font-18 { font-size: 18px; }
+.font-22 { font-size: 22px; }
+.font-28 { font-size: 28px; }
+.font-30 { font-size: 30px; }
+.font-32 { font-size: 32px; }
+.font-36 { font-size: 36px; }
+.font-40 { font-size: 40px; }
+.font-48 { font-size: 48px; }

@@ -20,5 +20,5 @@
     ]
   },
   "esmodules": ["scripts/main.js", "scripts/imageScale.js"],
-  "styles": ["styles/journal-plus.css", "styles/imageScale.css"]
+  "styles": ["styles/journal-plus.css", "styles/imageScale.css","styles/fontSize.css"]
 }

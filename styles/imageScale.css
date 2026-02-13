@@ -1,0 +1,97 @@
+/* imageScale.css */
+/* Minimal “Foundry-ish” floating panel styling. Safe: doesn’t touch layout. */
+
+.fvtt-image-scale-panel {
+  position: absolute;
+  z-index: 10000;
+  width: 240px;
+
+  background: var(--color-bg, rgba(20, 20, 20, 0.95));
+  border: 1px solid var(--color-border-light-primary, rgba(255, 255, 255, 0.15));
+  border-radius: 8px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+
+  padding: 10px;
+  color: var(--color-text-light-primary, #ddd);
+  font-family: var(--font-primary, sans-serif);
+}
+
+.fvtt-image-scale-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.fvtt-image-scale-label {
+  font-weight: 700;
+  font-size: 13px;
+  user-select: none;
+}
+
+.fvtt-image-scale-lock {
+  opacity: 0.75;
+  font-size: 12px;
+  user-select: none;
+}
+
+.fvtt-image-scale-controls {
+  justify-content: flex-start;
+}
+
+.fvtt-image-scale-input {
+  width: 80px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  border: 1px solid var(--color-border-light-primary, rgba(255, 255, 255, 0.18));
+  background: rgba(255, 255, 255, 0.06);
+  color: inherit;
+}
+
+.fvtt-image-scale-suffix {
+  opacity: 0.8;
+  user-select: none;
+}
+
+.fvtt-image-scale-fit {
+  margin-left: auto;
+}
+
+.fvtt-image-scale-presets button,
+.fvtt-image-scale-fit {
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--color-border-light-primary, rgba(255, 255, 255, 0.18));
+  background: rgba(255, 255, 255, 0.06);
+  color: inherit;
+  cursor: pointer;
+}
+
+.fvtt-image-scale-presets {
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.fvtt-image-scale-presets button {
+  flex: 1;
+  font-size: 12px;
+}
+
+.fvtt-image-scale-presets button:hover,
+.fvtt-image-scale-fit:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.fvtt-image-scale-meta {
+  margin-bottom: 0;
+}
+
+.fvtt-image-scale-dims {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 12px;
+  opacity: 0.9;
+  user-select: none;
+}

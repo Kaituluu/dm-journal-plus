@@ -19,5 +19,6 @@
       }
     ]
   },
-  "esmodules": ["scripts/main.js"]
+  "esmodules": ["scripts/main.js", "scripts/imageScale.js"],
+  "styles": ["styles/journal-plus.css", "styles/imageScale.css"]
 }
